@@ -3,8 +3,13 @@ import React from 'react';
 import Web3Provider from '../components/Web3Provider';
 import { NotificationsProvider } from 'reapop';
 import NotificationHandler from '../components/NotificationHandler';
+import { useRouter } from 'next/router';
+import NextLink from 'next/link';
+
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   return (
     <NotificationsProvider>
       <Web3Provider>
