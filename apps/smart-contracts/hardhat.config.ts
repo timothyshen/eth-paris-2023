@@ -37,30 +37,30 @@ const config: HardhatUserConfig = {
         interval: 5000,
       },
     },
-    mainnet: {
-      chainId: 1,
-      url: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-      accounts: [`${PRIVATE_KEY}`],
-      deploy: ['deploy/mainnet/ethereum'],
-    },
-    optimism: {
-      chainId: 10,
-      url: `https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-      accounts: [`${PRIVATE_KEY}`],
-      deploy: ['deploy/mainnet/optimism'],
-    },
-    goerli: {
-      chainId: 5,
-      url: `https://eth-goerli.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-      accounts: [`${PRIVATE_KEY}`],
-      // deploy: ['deploy/testnet/goerli'],
-    },
-    optimismGoerli: {
-      chainId: 420,
-      url: `https://opt-goerli.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-      accounts: [`${PRIVATE_KEY}`],
-      deploy: ['deploy/testnet/optimismGoerli'],
-    },
+    // mainnet: {
+    //   chainId: 1,
+    //   url: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+    //   accounts: [`${PRIVATE_KEY}`],
+    //   deploy: ['deploy/mainnet/ethereum'],
+    // },
+    // optimism: {
+    //   chainId: 10,
+    //   url: `https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+    //   accounts: [`${PRIVATE_KEY}`],
+    //   deploy: ['deploy/mainnet/optimism'],
+    // },
+    // goerli: {
+    //   chainId: 5,
+    //   url: `https://eth-goerli.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+    //   accounts: [`${PRIVATE_KEY}`],
+    //   // deploy: ['deploy/testnet/goerli'],
+    // },
+    // optimismGoerli: {
+    //   chainId: 420,
+    //   url: `https://opt-goerli.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+    //   accounts: [`${PRIVATE_KEY}`],
+    //   deploy: ['deploy/testnet/optimismGoerli'],
+    // },
   },
   namedAccounts: {
     deployer: {
