@@ -1,6 +1,9 @@
 module.exports = {
   reactStrictMode: false,
   transpilePackages: ['ui', 'web3-config'],
+  images:{
+    domains: ['ipfs.io'],
+  },
   webpack: (config) => {
     return {
       ...config,

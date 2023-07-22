@@ -65,7 +65,7 @@ const MintCharacter = () => {
             >
                 {isLoading ? 'Minting...' : 'Mint'}
             </button>
-            <NFTwidgets address={user.address} />
+            <NFTwidgets address={user.address} type="gamebase" />
         </div>
     );
 }

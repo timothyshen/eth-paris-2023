@@ -9,8 +9,7 @@ import { write } from "fs";
 const MintEquipment = () => {
     const selectedToken = useTokenStore((s: any) => s.selectedToken);
     const MOCK721Address = useAddress(MockERC721__factory) as string;
-    console.log(selectedToken);
-    console.log(MOCK721Address);
+
 
     const { write: mintEquipment, isLoading } = useContractWrite(
         AccountERC6551__factory,

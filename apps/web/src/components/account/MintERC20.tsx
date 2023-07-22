@@ -32,7 +32,6 @@ const MintToken: React.FC = () => {
     );
 
     const handleMint = async () => {
-        console.log(IMOCK20__factory.createInterface());
         const data = IMOCK20__factory.createInterface().encodeFunctionData(
             "mint",
             [selectedToken, ethers.utils.parseEther('1')]
