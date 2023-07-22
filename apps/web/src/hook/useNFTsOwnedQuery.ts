@@ -2,19 +2,6 @@ import { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-const graphQuery = gql`
-  query Stats($profileId: ProfileId!) {
-    profile(request: { profileId: $profileId }) {
-      stats {
-        totalFollowers
-        totalCollects
-        totalPosts
-        totalFollowing
-      }
-    }
-  }
-`;
-
 export const useNFTsOwnedQuery = (address?: string) => {
   const query = useQuery<any>(
     ['address', address],
