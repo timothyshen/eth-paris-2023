@@ -6,10 +6,12 @@ const name = 'GameBaseNFT';
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = hre;
   const { deployer } = await getNamedAccounts();
+  const erc6551Registry = await deployments.get('ERC6551Registry');
+  const account = await deployments.get('AccountERC6551');
   const { deploy } = deployments;
   const args: any[] = [
-    '0x02101dfB77FDE026414827Fdc604ddAF224F0921',
-    '0x2d25602551487c3f3354dd80d76d54383a243358',
+    '0x8515ca0dec371e640eACCFc306093CFF7EE46789',
+    '0x8D2729D9807E9FdD7d648BD3045c39B80aB2E5c7',
   ];
   const deployment = await deploy(name, {
     from: deployer,

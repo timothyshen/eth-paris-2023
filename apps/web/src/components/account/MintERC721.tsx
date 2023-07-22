@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useAddress, useContractWrite } from "wagmi-lfg";
-import { IERC721__factory, MockERC721__factory } from "web3-config";
+import { MockERC721__factory, AccountERC6551__factory } from "web3-config";
 import { notify } from "reapop";
-import useTokenStore from "../hook/useTokenStore";
+import { useTokenStore } from "../../hook/useTokenStore";
 import { write } from "fs";
 
 
 const MintEquipment = () => {
-    const selectedToken = useTokenStore((s) => s.selectedToken);
+    const selectedToken = useTokenStore((s: any) => s.selectedToken);
 
     const MOCK721Address = useAddress(MockERC721__factory) as string;
 
     const { write: mintEquipment, isLoading } = useContractWrite(
-        MockERC721__factory,
-        "mint",
+        AccountERC6551__factory,
+        "executeCall",
         {
             reckless: true,
             address: selectedToken?.accountAddress,
@@ -34,7 +34,7 @@ const MintEquipment = () => {
     );
 
     const handleMint = async () => {
-        const data = IERC721__factory.createInterface().encodeFunctionData(
+        const data = MockERC721__factory.createInterface().encodeFunctionData(
             "mint",
             [selectedToken?.accountAddress, 1]
         )
