@@ -45,6 +45,8 @@ contract GameBaseNFT is Ownable, ERC721, IERC4906, IERC4907 {
     IERC6551Registry public ERC6551Registry;
     address public ERC6551AccountImplementation;
 
+    mapping(uint256 => string) private _tokenImageURIs;
+
     constructor(
         address _ERC6551Registry,
         address _ERC6551AccountImplementation
@@ -90,8 +92,13 @@ contract GameBaseNFT is Ownable, ERC721, IERC4906, IERC4907 {
     }
 
     // Getter
-    function _startTokenId() internal view returns (uint256) {
+    function _startTokenId() internal pure returns (uint256) {
         return 1;
+    }
+
+    function _baseURI() internal pure override returns (string memory) {
+        return
+            'https://bafkreifd3ypvs22cv2fpvydctb4epl5aw336jqhmhpbo3npom57r72o5j4.ipfs.nftstorage.link/';
     }
 
     //4907

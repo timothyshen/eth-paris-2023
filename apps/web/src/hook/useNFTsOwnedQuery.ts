@@ -1,4 +1,3 @@
-import { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
 import { GameBaseNFT__factory } from 'web3-config';
 import { useAddress } from 'wagmi-lfg';
