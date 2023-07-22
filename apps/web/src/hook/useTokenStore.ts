@@ -1,5 +1,10 @@
 import { create } from 'zustand';
 
-export const useTokenStore = create((set) => ({
-  setTokens: (tokens: any) => set((state) => ({ tokens })),
+type Store = {
+  selectedToken?: any;
+  setToken: (token: any) => void;
+};
+
+export const useTokenStore = create<Store>((set) => ({
+  setToken: (token) => set({ selectedToken: token }),
 }));

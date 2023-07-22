@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useContractWrite } from "wagmi-lfg";
 import { GameBaseNFT__factory } from "web3-config";
-import { ethers } from "ethers";
+import { notify } from "reapop";
 
 const RentCharacter = ({ characterData }) => {
     const [expires, setExpires] = useState(0);
     const [user, setUser] = useState('');
-
 
 
     const { write: rentCharacter, isLoading } = useContractWrite(
@@ -21,14 +20,31 @@ const RentCharacter = ({ characterData }) => {
         const bigIntValue = BigInt(parseInt(characterData.id.tokenId, 16));
         try {
             rentCharacter({
-                args: [bigIntValue, "0x735f2B735c7226f8F1fB5A1443FaA6Fe6D557402", expires],
+                args: [bigIntValue, user, expires],
                 overrides: {
                     gasLimit: 1000000,
                 }
             });
             console.log("rented character");
-        } catch (e) {
-            console.log(e);
+        } catch (error) {
+            console.error('Error while minting:', error);
+            if (error.message.includes('insufficient funds')) {
+                notify({
+                    title: 'Error',
+                    message: 'Insufficient funds to complete the transaction.',
+                    status: 'error',
+                    dismissible: true,
+                    dismissAfter: 5000,
+                });
+            } else {
+                notify({
+                    title: 'Error',
+                    message: `Error while minting: ${error.message}`,
+                    status: 'error',
+                    dismissible: true,
+                    dismissAfter: 5000,
+                });
+            }
         }
     }
 

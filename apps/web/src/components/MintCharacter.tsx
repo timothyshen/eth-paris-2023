@@ -23,7 +23,7 @@ const MintCharacter = () => {
         try {
             await mintCharacter({
                 overrides: {
-                    value: ethers.utils.parseEther('0.1'),
+                    value: ethers.utils.parseEther('0.001'),
                 },
             });
             notify({

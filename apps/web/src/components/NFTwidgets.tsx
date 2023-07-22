@@ -6,23 +6,17 @@ import { useContractRead } from 'wagmi-lfg';
 import WalletAddress from './WalletAddress';
 
 const NFTwidgets = ({ address }: { address: string }) => {
-    const [nftAddresses, setNftAddresses] = React.useState<{ [tokenId: string]: string }>({});
     const { data } = useNFTsOwnedQuery(address);
-    const nftData = data?.ownedNfts;
-
-
+    console.log(data)
 
     const transformTokenIds = (tokenIds: number) => {
         return BigInt(tokenIds).toString()
     }
 
 
-
-
-
     return (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {nftData?.map((item, index) => (
+            {data?.map((item, index) => (
                 <div key={index} className="p-4 bg-white rounded shadow">
                     <h2 className="text-xl font-bold mb-2">{item.contractMetadata.name}</h2>
                     <p className="text-gray-600 mb-4">{item.description}</p>

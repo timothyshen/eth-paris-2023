@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAddress, useContractWrite } from "wagmi-lfg";
-import { MockERC721__factory, AccountERC6551__factory } from "web3-config";
+import { MockERC721__factory, IMOCK721__factory, AccountERC6551__factory } from "web3-config";
 import { notify } from "reapop";
 import { useTokenStore } from "../../hook/useTokenStore";
 import { write } from "fs";
@@ -8,7 +8,6 @@ import { write } from "fs";
 
 const MintEquipment = () => {
     const selectedToken = useTokenStore((s: any) => s.selectedToken);
-
     const MOCK721Address = useAddress(MockERC721__factory) as string;
 
     const { write: mintEquipment, isLoading } = useContractWrite(
@@ -16,7 +15,7 @@ const MintEquipment = () => {
         "executeCall",
         {
             reckless: true,
-            address: selectedToken?.accountAddress,
+            address: selectedToken,
             onSuccess: () => {
                 notify({
                     title: 'Minted',
@@ -34,12 +33,15 @@ const MintEquipment = () => {
     );
 
     const handleMint = async () => {
-        const data = MockERC721__factory.createInterface().encodeFunctionData(
+        const data = IMOCK721__factory.createInterface().encodeFunctionData(
             "mint",
-            [selectedToken?.accountAddress, 1]
+            [selectedToken, 1]
         )
         mintEquipment({
             args: [MOCK721Address, BigInt(0), data],
+            overrides: {
+                gasLimit: 1000000,
+            }
         });
 
     }
@@ -52,7 +54,7 @@ const MintEquipment = () => {
                 onClick={() => { handleMint() }}
                 disabled={isLoading}
             >
-                {isLoading ? 'Minting...' : 'Mint Token'}
+                {isLoading ? 'Minting...' : 'Mint Equipment'}
             </button>
         </div>
     );
