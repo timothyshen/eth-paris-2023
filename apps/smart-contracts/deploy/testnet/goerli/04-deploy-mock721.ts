@@ -10,7 +10,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const deployment = await deploy(name, {
     from: deployer,
-    args: [],
+    args: ["https://ipfs.io/ipfs/bafybeifzarmhsun6qdg3f5dfkwhw5quff77656lonxqvtuxgpnwsxynqw4"],
   });
 
   deployments.log(`Contract ${name} deployed at ${deployment.address}`);
