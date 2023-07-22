@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAddress, useContractWrite } from "wagmi-lfg";
 import { MockERC721__factory, IMOCK721__factory, AccountERC6551__factory } from "web3-config";
 import { notify } from "reapop";
 import { useTokenStore } from "../../hook/useTokenStore";
-import { write } from "fs";
 
 
 const MintEquipment = () => {
