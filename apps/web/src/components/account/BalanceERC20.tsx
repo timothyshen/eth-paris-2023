@@ -14,11 +14,18 @@ interface TokenBalance {
 }
 
 const OwnedTokens = () => {
-    const [tokenBalance, setTokenBalance] = useState<TokenBalance>({});
+    const [tokenBalance, setTokenBalance] = useState<TokenBalance>({
+        balance: "",
+        name: "",
+        symbol: "",
+        tokenAddress: "",
+    });
     const selectedToken = useTokenStore((s: any) => s.selectedToken);
     const MOCK20Address = useAddress(MockERC20__factory) as string;
-    const providersEth = new providers.Web3Provider(window.ethereum);
-
+    let providersEth: any;
+    if (typeof window !== 'undefined') {
+        providersEth = new providers.Web3Provider(window?.ethereum);
+    }
     const fetchToken = async () => {
         const token = MockERC20__factory.connect(MOCK20Address, providersEth);
         const balance = await token.balanceOf(selectedToken);
