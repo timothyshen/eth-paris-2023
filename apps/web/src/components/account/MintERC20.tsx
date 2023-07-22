@@ -3,11 +3,11 @@ import { useAddress, useContractWrite } from "wagmi-lfg";
 import { MockERC20__factory, IMOCK20__factory, AccountERC6551__factory } from "web3-config";
 import { notify } from "reapop";
 import { useTokenStore } from "../../hook/useTokenStore";
+import { ethers } from "ethers";
 
 const MintToken: React.FC = () => {
     const selectedToken = useTokenStore((s: any) => s.selectedToken);
     const MOCK20Address = useAddress(MockERC20__factory) as string;
-    console.log(selectedToken)
 
     const { write: mintToken, isLoading } = useContractWrite(
         AccountERC6551__factory,
@@ -34,9 +34,8 @@ const MintToken: React.FC = () => {
     const handleMint = async () => {
         const data = IMOCK20__factory.createInterface().encodeFunctionData(
             "mint",
-            [selectedToken, 1]
+            [selectedToken, ethers.utils.parseEther('1')]
         );
-        console.log(data)
         mintToken({
             args: [MOCK20Address, BigInt(0), data],
         });

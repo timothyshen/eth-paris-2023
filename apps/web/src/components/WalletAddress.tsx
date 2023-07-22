@@ -12,7 +12,6 @@ const WalletAddress = ({ tokenID }) => {
     });
 
     const handleSetToken = () => {
-        console.log("setting token");
         setToken(data);
     };
 

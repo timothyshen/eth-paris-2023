@@ -18,7 +18,6 @@ const MintCharacter = () => {
         },
 
     );
-    console.log(user.address);
 
     const handleMint = async () => {
         try {

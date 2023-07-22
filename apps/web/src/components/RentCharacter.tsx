@@ -25,7 +25,6 @@ const RentCharacter = ({ characterData }) => {
                     gasLimit: 1000000,
                 }
             });
-            console.log("rented character");
         } catch (error) {
             console.error('Error while minting:', error);
             if (error.message.includes('insufficient funds')) {

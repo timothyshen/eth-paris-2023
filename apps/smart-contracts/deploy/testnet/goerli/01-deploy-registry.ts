@@ -14,11 +14,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     args,
   });
 
-  console.log(
-    `npx hardhat verify --network ${network.name} ${
-      deployment.address
-    } ${args.map((arg) => `"${arg}"`)}`
-  );
+  deployments.log(`Contract ${name} deployed at ${deployment.address}`);
 };
 
 func.tags = ['all', name];

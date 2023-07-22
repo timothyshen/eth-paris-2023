@@ -7,7 +7,6 @@ import WalletAddress from './WalletAddress';
 
 const NFTwidgets = ({ address }: { address: string }) => {
     const { data } = useNFTsOwnedQuery(address);
-    console.log(data)
 
     const transformTokenIds = (tokenIds: number) => {
         return BigInt(tokenIds).toString()

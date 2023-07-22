@@ -41,6 +41,7 @@ contract GameBaseNFT is Ownable, ERC721, IERC4906, IERC4907 {
     Counters.Counter private _tokenIds;
 
     uint256 public constant PRICE_TOKEN = 0.001 ether;
+    string private baseURI;
 
     IERC6551Registry public ERC6551Registry;
     address public ERC6551AccountImplementation;
@@ -49,10 +50,12 @@ contract GameBaseNFT is Ownable, ERC721, IERC4906, IERC4907 {
 
     constructor(
         address _ERC6551Registry,
-        address _ERC6551AccountImplementation
+        address _ERC6551AccountImplementation,
+        string memory _baseURI
     ) ERC721('Rent4907', 'R4907') {
         ERC6551Registry = IERC6551Registry(_ERC6551Registry);
         ERC6551AccountImplementation = _ERC6551AccountImplementation;
+        baseURI = _baseURI;
     }
 
     function mint() external payable {
@@ -66,6 +69,14 @@ contract GameBaseNFT is Ownable, ERC721, IERC4906, IERC4907 {
             createAccount(tokenId),
             'GameBaseNFT: failed to create account'
         );
+    }
+
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
+    }
+
+    function setBaseURI(string memory _baseURI) public onlyOwner {
+        baseURI = _baseURI;
     }
 
     function createAccount(uint256 tokenId) internal returns (bool) {
@@ -94,11 +105,6 @@ contract GameBaseNFT is Ownable, ERC721, IERC4906, IERC4907 {
     // Getter
     function _startTokenId() internal pure returns (uint256) {
         return 1;
-    }
-
-    function _baseURI() internal pure override returns (string memory) {
-        return
-            'https://bafkreifd3ypvs22cv2fpvydctb4epl5aw336jqhmhpbo3npom57r72o5j4.ipfs.nftstorage.link/';
     }
 
     //4907

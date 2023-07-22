@@ -9,7 +9,6 @@ import type {
   CallOverrides,
   ContractTransaction,
   Overrides,
-  PayableOverrides,
   PopulatedTransaction,
   Signer,
   utils,
@@ -26,45 +25,30 @@ import type {
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from "../../../common";
+} from "../../../../../common";
 
-export interface GameBaseNFTInterface extends utils.Interface {
+export interface ERC721EnumerableInterface extends utils.Interface {
   functions: {
-    "ERC6551AccountImplementation()": FunctionFragment;
-    "ERC6551Registry()": FunctionFragment;
-    "PRICE_TOKEN()": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
-    "mint()": FunctionFragment;
     "name()": FunctionFragment;
-    "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
-    "renounceOwnership()": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
-    "setBaseURI(string)": FunctionFragment;
-    "setUser(uint256,address,uint64)": FunctionFragment;
-    "showTBA(uint256)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
+    "tokenByIndex(uint256)": FunctionFragment;
+    "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
+    "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
-    "transferOwnership(address)": FunctionFragment;
-    "userExpires(uint256)": FunctionFragment;
-    "userOf(uint256)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "ERC6551AccountImplementation"
-      | "ERC6551AccountImplementation()"
-      | "ERC6551Registry"
-      | "ERC6551Registry()"
-      | "PRICE_TOKEN"
-      | "PRICE_TOKEN()"
       | "approve"
       | "approve(address,uint256)"
       | "balanceOf"
@@ -73,66 +57,30 @@ export interface GameBaseNFTInterface extends utils.Interface {
       | "getApproved(uint256)"
       | "isApprovedForAll"
       | "isApprovedForAll(address,address)"
-      | "mint"
-      | "mint()"
       | "name"
       | "name()"
-      | "owner"
-      | "owner()"
       | "ownerOf"
       | "ownerOf(uint256)"
-      | "renounceOwnership"
-      | "renounceOwnership()"
       | "safeTransferFrom(address,address,uint256)"
       | "safeTransferFrom(address,address,uint256,bytes)"
       | "setApprovalForAll"
       | "setApprovalForAll(address,bool)"
-      | "setBaseURI"
-      | "setBaseURI(string)"
-      | "setUser"
-      | "setUser(uint256,address,uint64)"
-      | "showTBA"
-      | "showTBA(uint256)"
       | "supportsInterface"
       | "supportsInterface(bytes4)"
       | "symbol"
       | "symbol()"
+      | "tokenByIndex"
+      | "tokenByIndex(uint256)"
+      | "tokenOfOwnerByIndex"
+      | "tokenOfOwnerByIndex(address,uint256)"
       | "tokenURI"
       | "tokenURI(uint256)"
+      | "totalSupply"
+      | "totalSupply()"
       | "transferFrom"
       | "transferFrom(address,address,uint256)"
-      | "transferOwnership"
-      | "transferOwnership(address)"
-      | "userExpires"
-      | "userExpires(uint256)"
-      | "userOf"
-      | "userOf(uint256)"
   ): FunctionFragment;
 
-  encodeFunctionData(
-    functionFragment: "ERC6551AccountImplementation",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ERC6551AccountImplementation()",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ERC6551Registry",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ERC6551Registry()",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "PRICE_TOKEN",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "PRICE_TOKEN()",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "approve",
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
@@ -165,12 +113,8 @@ export interface GameBaseNFTInterface extends utils.Interface {
     functionFragment: "isApprovedForAll(address,address)",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(functionFragment: "mint", values?: undefined): string;
-  encodeFunctionData(functionFragment: "mint()", values?: undefined): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "name()", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner()", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
     values: [PromiseOrValue<BigNumberish>]
@@ -178,14 +122,6 @@ export interface GameBaseNFTInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "ownerOf(uint256)",
     values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "renounceOwnership",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "renounceOwnership()",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom(address,address,uint256)",
@@ -213,38 +149,6 @@ export interface GameBaseNFTInterface extends utils.Interface {
     values: [PromiseOrValue<string>, PromiseOrValue<boolean>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setBaseURI",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setBaseURI(string)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setUser",
-    values: [
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<string>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setUser(uint256,address,uint64)",
-    values: [
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<string>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "showTBA",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "showTBA(uint256)",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [PromiseOrValue<BytesLike>]
   ): string;
@@ -255,12 +159,36 @@ export interface GameBaseNFTInterface extends utils.Interface {
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
   encodeFunctionData(functionFragment: "symbol()", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "tokenByIndex",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenByIndex(uint256)",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenOfOwnerByIndex",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "tokenOfOwnerByIndex(address,uint256)",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "tokenURI",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
     functionFragment: "tokenURI(uint256)",
     values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalSupply",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalSupply()",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "transferFrom",
@@ -278,55 +206,7 @@ export interface GameBaseNFTInterface extends utils.Interface {
       PromiseOrValue<BigNumberish>
     ]
   ): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "userExpires",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "userExpires(uint256)",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "userOf",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "userOf(uint256)",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
 
-  decodeFunctionResult(
-    functionFragment: "ERC6551AccountImplementation",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ERC6551AccountImplementation()",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ERC6551Registry",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "ERC6551Registry()",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "PRICE_TOKEN",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "PRICE_TOKEN()",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "approve(address,uint256)",
@@ -353,23 +233,11 @@ export interface GameBaseNFTInterface extends utils.Interface {
     functionFragment: "isApprovedForAll(address,address)",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mint()", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name()", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner()", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "ownerOf(uint256)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "renounceOwnership",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "renounceOwnership()",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -388,21 +256,6 @@ export interface GameBaseNFTInterface extends utils.Interface {
     functionFragment: "setApprovalForAll(address,bool)",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "setBaseURI", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setBaseURI(string)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "setUser", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setUser(uint256,address,uint64)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "showTBA", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "showTBA(uint256)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -413,9 +266,33 @@ export interface GameBaseNFTInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "symbol()", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenByIndex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenByIndex(uint256)",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenOfOwnerByIndex",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "tokenOfOwnerByIndex(address,uint256)",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "tokenURI(uint256)",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "totalSupply",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "totalSupply()",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -426,36 +303,11 @@ export interface GameBaseNFTInterface extends utils.Interface {
     functionFragment: "transferFrom(address,address,uint256)",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership(address)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "userExpires",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "userExpires(uint256)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "userOf", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "userOf(uint256)",
-    data: BytesLike
-  ): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
-    "BatchMetadataUpdate(uint256,uint256)": EventFragment;
-    "MetadataUpdate(uint256)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
-    "UpdateUser(uint256,address,uint64)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
@@ -466,23 +318,9 @@ export interface GameBaseNFTInterface extends utils.Interface {
   getEvent(
     nameOrSignatureOrTopic: "ApprovalForAll(address,address,bool)"
   ): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "BatchMetadataUpdate"): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "BatchMetadataUpdate(uint256,uint256)"
-  ): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "MetadataUpdate"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "MetadataUpdate(uint256)"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "OwnershipTransferred(address,address)"
-  ): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
   getEvent(
     nameOrSignatureOrTopic: "Transfer(address,address,uint256)"
-  ): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "UpdateUser"): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "UpdateUser(uint256,address,uint64)"
   ): EventFragment;
 }
 
@@ -510,40 +348,6 @@ export type ApprovalForAllEvent = TypedEvent<
 
 export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>;
 
-export interface BatchMetadataUpdateEventObject {
-  _fromTokenId: BigNumber;
-  _toTokenId: BigNumber;
-}
-export type BatchMetadataUpdateEvent = TypedEvent<
-  [BigNumber, BigNumber],
-  BatchMetadataUpdateEventObject
->;
-
-export type BatchMetadataUpdateEventFilter =
-  TypedEventFilter<BatchMetadataUpdateEvent>;
-
-export interface MetadataUpdateEventObject {
-  _tokenId: BigNumber;
-}
-export type MetadataUpdateEvent = TypedEvent<
-  [BigNumber],
-  MetadataUpdateEventObject
->;
-
-export type MetadataUpdateEventFilter = TypedEventFilter<MetadataUpdateEvent>;
-
-export interface OwnershipTransferredEventObject {
-  previousOwner: string;
-  newOwner: string;
-}
-export type OwnershipTransferredEvent = TypedEvent<
-  [string, string],
-  OwnershipTransferredEventObject
->;
-
-export type OwnershipTransferredEventFilter =
-  TypedEventFilter<OwnershipTransferredEvent>;
-
 export interface TransferEventObject {
   from: string;
   to: string;
@@ -556,24 +360,12 @@ export type TransferEvent = TypedEvent<
 
 export type TransferEventFilter = TypedEventFilter<TransferEvent>;
 
-export interface UpdateUserEventObject {
-  tokenId: BigNumber;
-  user: string;
-  expires: BigNumber;
-}
-export type UpdateUserEvent = TypedEvent<
-  [BigNumber, string, BigNumber],
-  UpdateUserEventObject
->;
-
-export type UpdateUserEventFilter = TypedEventFilter<UpdateUserEvent>;
-
-export interface GameBaseNFT extends BaseContract {
+export interface ERC721Enumerable extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: GameBaseNFTInterface;
+  interface: ERC721EnumerableInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -595,20 +387,6 @@ export interface GameBaseNFT extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    ERC6551AccountImplementation(overrides?: CallOverrides): Promise<[string]>;
-
-    "ERC6551AccountImplementation()"(
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    ERC6551Registry(overrides?: CallOverrides): Promise<[string]>;
-
-    "ERC6551Registry()"(overrides?: CallOverrides): Promise<[string]>;
-
-    PRICE_TOKEN(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "PRICE_TOKEN()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -653,21 +431,9 @@ export interface GameBaseNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    mint(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "mint()"(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     name(overrides?: CallOverrides): Promise<[string]>;
 
     "name()"(overrides?: CallOverrides): Promise<[string]>;
-
-    owner(overrides?: CallOverrides): Promise<[string]>;
-
-    "owner()"(overrides?: CallOverrides): Promise<[string]>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -678,14 +444,6 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<[string]>;
-
-    renounceOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
@@ -714,40 +472,6 @@ export interface GameBaseNFT extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    setBaseURI(
-      _baseURI: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "setBaseURI(string)"(
-      _baseURI: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    setUser(
-      tokenId: PromiseOrValue<BigNumberish>,
-      user: PromiseOrValue<string>,
-      expires: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "setUser(uint256,address,uint64)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      user: PromiseOrValue<string>,
-      expires: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    showTBA(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    "showTBA(uint256)"(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
     supportsInterface(
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
@@ -762,6 +486,28 @@ export interface GameBaseNFT extends BaseContract {
 
     "symbol()"(overrides?: CallOverrides): Promise<[string]>;
 
+    tokenByIndex(
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "tokenByIndex(uint256)"(
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    tokenOfOwnerByIndex(
+      owner: PromiseOrValue<string>,
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: PromiseOrValue<string>,
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
     tokenURI(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -771,6 +517,10 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<[string]>;
+
+    totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     transferFrom(
       from: PromiseOrValue<string>,
@@ -785,49 +535,7 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
-    transferOwnership(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "transferOwnership(address)"(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    userExpires(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    "userExpires(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    userOf(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    "userOf(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
   };
-
-  ERC6551AccountImplementation(overrides?: CallOverrides): Promise<string>;
-
-  "ERC6551AccountImplementation()"(overrides?: CallOverrides): Promise<string>;
-
-  ERC6551Registry(overrides?: CallOverrides): Promise<string>;
-
-  "ERC6551Registry()"(overrides?: CallOverrides): Promise<string>;
-
-  PRICE_TOKEN(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "PRICE_TOKEN()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   approve(
     to: PromiseOrValue<string>,
@@ -873,21 +581,9 @@ export interface GameBaseNFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  mint(
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "mint()"(
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   name(overrides?: CallOverrides): Promise<string>;
 
   "name()"(overrides?: CallOverrides): Promise<string>;
-
-  owner(overrides?: CallOverrides): Promise<string>;
-
-  "owner()"(overrides?: CallOverrides): Promise<string>;
 
   ownerOf(
     tokenId: PromiseOrValue<BigNumberish>,
@@ -898,14 +594,6 @@ export interface GameBaseNFT extends BaseContract {
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<string>;
-
-  renounceOwnership(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "renounceOwnership()"(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
 
   "safeTransferFrom(address,address,uint256)"(
     from: PromiseOrValue<string>,
@@ -934,40 +622,6 @@ export interface GameBaseNFT extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  setBaseURI(
-    _baseURI: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "setBaseURI(string)"(
-    _baseURI: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  setUser(
-    tokenId: PromiseOrValue<BigNumberish>,
-    user: PromiseOrValue<string>,
-    expires: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "setUser(uint256,address,uint64)"(
-    tokenId: PromiseOrValue<BigNumberish>,
-    user: PromiseOrValue<string>,
-    expires: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  showTBA(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  "showTBA(uint256)"(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
   supportsInterface(
     interfaceId: PromiseOrValue<BytesLike>,
     overrides?: CallOverrides
@@ -982,6 +636,28 @@ export interface GameBaseNFT extends BaseContract {
 
   "symbol()"(overrides?: CallOverrides): Promise<string>;
 
+  tokenByIndex(
+    index: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenByIndex(uint256)"(
+    index: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  tokenOfOwnerByIndex(
+    owner: PromiseOrValue<string>,
+    index: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "tokenOfOwnerByIndex(address,uint256)"(
+    owner: PromiseOrValue<string>,
+    index: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
   tokenURI(
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
@@ -991,6 +667,10 @@ export interface GameBaseNFT extends BaseContract {
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<string>;
+
+  totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   transferFrom(
     from: PromiseOrValue<string>,
@@ -1006,51 +686,7 @@ export interface GameBaseNFT extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  transferOwnership(
-    newOwner: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "transferOwnership(address)"(
-    newOwner: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  userExpires(
-    tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  "userExpires(uint256)"(
-    tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  userOf(
-    tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  "userOf(uint256)"(
-    tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
   callStatic: {
-    ERC6551AccountImplementation(overrides?: CallOverrides): Promise<string>;
-
-    "ERC6551AccountImplementation()"(
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    ERC6551Registry(overrides?: CallOverrides): Promise<string>;
-
-    "ERC6551Registry()"(overrides?: CallOverrides): Promise<string>;
-
-    PRICE_TOKEN(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "PRICE_TOKEN()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1095,17 +731,9 @@ export interface GameBaseNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    mint(overrides?: CallOverrides): Promise<void>;
-
-    "mint()"(overrides?: CallOverrides): Promise<void>;
-
     name(overrides?: CallOverrides): Promise<string>;
 
     "name()"(overrides?: CallOverrides): Promise<string>;
-
-    owner(overrides?: CallOverrides): Promise<string>;
-
-    "owner()"(overrides?: CallOverrides): Promise<string>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1116,10 +744,6 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    renounceOwnership(overrides?: CallOverrides): Promise<void>;
-
-    "renounceOwnership()"(overrides?: CallOverrides): Promise<void>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
@@ -1148,40 +772,6 @@ export interface GameBaseNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    setBaseURI(
-      _baseURI: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "setBaseURI(string)"(
-      _baseURI: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    setUser(
-      tokenId: PromiseOrValue<BigNumberish>,
-      user: PromiseOrValue<string>,
-      expires: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "setUser(uint256,address,uint64)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      user: PromiseOrValue<string>,
-      expires: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    showTBA(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    "showTBA(uint256)"(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
     supportsInterface(
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
@@ -1196,6 +786,28 @@ export interface GameBaseNFT extends BaseContract {
 
     "symbol()"(overrides?: CallOverrides): Promise<string>;
 
+    tokenByIndex(
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: PromiseOrValue<string>,
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: PromiseOrValue<string>,
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     tokenURI(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1205,6 +817,10 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
       from: PromiseOrValue<string>,
@@ -1219,36 +835,6 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
-
-    transferOwnership(
-      newOwner: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "transferOwnership(address)"(
-      newOwner: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    userExpires(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "userExpires(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    userOf(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    "userOf(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<string>;
   };
 
   filters: {
@@ -1274,27 +860,6 @@ export interface GameBaseNFT extends BaseContract {
       approved?: null
     ): ApprovalForAllEventFilter;
 
-    "BatchMetadataUpdate(uint256,uint256)"(
-      _fromTokenId?: null,
-      _toTokenId?: null
-    ): BatchMetadataUpdateEventFilter;
-    BatchMetadataUpdate(
-      _fromTokenId?: null,
-      _toTokenId?: null
-    ): BatchMetadataUpdateEventFilter;
-
-    "MetadataUpdate(uint256)"(_tokenId?: null): MetadataUpdateEventFilter;
-    MetadataUpdate(_tokenId?: null): MetadataUpdateEventFilter;
-
-    "OwnershipTransferred(address,address)"(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
-    OwnershipTransferred(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
-
     "Transfer(address,address,uint256)"(
       from?: PromiseOrValue<string> | null,
       to?: PromiseOrValue<string> | null,
@@ -1305,34 +870,9 @@ export interface GameBaseNFT extends BaseContract {
       to?: PromiseOrValue<string> | null,
       tokenId?: PromiseOrValue<BigNumberish> | null
     ): TransferEventFilter;
-
-    "UpdateUser(uint256,address,uint64)"(
-      tokenId?: PromiseOrValue<BigNumberish> | null,
-      user?: PromiseOrValue<string> | null,
-      expires?: null
-    ): UpdateUserEventFilter;
-    UpdateUser(
-      tokenId?: PromiseOrValue<BigNumberish> | null,
-      user?: PromiseOrValue<string> | null,
-      expires?: null
-    ): UpdateUserEventFilter;
   };
 
   estimateGas: {
-    ERC6551AccountImplementation(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "ERC6551AccountImplementation()"(
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    ERC6551Registry(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "ERC6551Registry()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    PRICE_TOKEN(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "PRICE_TOKEN()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1377,21 +917,9 @@ export interface GameBaseNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    mint(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "mint()"(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
     "name()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    owner(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1401,14 +929,6 @@ export interface GameBaseNFT extends BaseContract {
     "ownerOf(uint256)"(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    renounceOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
@@ -1436,40 +956,6 @@ export interface GameBaseNFT extends BaseContract {
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setBaseURI(
-      _baseURI: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "setBaseURI(string)"(
-      _baseURI: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    setUser(
-      tokenId: PromiseOrValue<BigNumberish>,
-      user: PromiseOrValue<string>,
-      expires: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "setUser(uint256,address,uint64)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      user: PromiseOrValue<string>,
-      expires: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    showTBA(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "showTBA(uint256)"(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     supportsInterface(
@@ -1486,6 +972,28 @@ export interface GameBaseNFT extends BaseContract {
 
     "symbol()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    tokenByIndex(
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenByIndex(uint256)"(
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    tokenOfOwnerByIndex(
+      owner: PromiseOrValue<string>,
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: PromiseOrValue<string>,
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     tokenURI(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1495,6 +1003,10 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
       from: PromiseOrValue<string>,
@@ -1509,57 +1021,9 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
-
-    transferOwnership(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "transferOwnership(address)"(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    userExpires(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "userExpires(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    userOf(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "userOf(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    ERC6551AccountImplementation(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "ERC6551AccountImplementation()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    ERC6551Registry(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "ERC6551Registry()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    PRICE_TOKEN(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "PRICE_TOKEN()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1604,21 +1068,9 @@ export interface GameBaseNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    mint(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "mint()"(
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     "name()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -1628,14 +1080,6 @@ export interface GameBaseNFT extends BaseContract {
     "ownerOf(uint256)"(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    renounceOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "renounceOwnership()"(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     "safeTransferFrom(address,address,uint256)"(
@@ -1665,40 +1109,6 @@ export interface GameBaseNFT extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    setBaseURI(
-      _baseURI: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setBaseURI(string)"(
-      _baseURI: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    setUser(
-      tokenId: PromiseOrValue<BigNumberish>,
-      user: PromiseOrValue<string>,
-      expires: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setUser(uint256,address,uint64)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      user: PromiseOrValue<string>,
-      expires: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    showTBA(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "showTBA(uint256)"(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     supportsInterface(
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
@@ -1713,6 +1123,28 @@ export interface GameBaseNFT extends BaseContract {
 
     "symbol()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    tokenByIndex(
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenByIndex(uint256)"(
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    tokenOfOwnerByIndex(
+      owner: PromiseOrValue<string>,
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "tokenOfOwnerByIndex(address,uint256)"(
+      owner: PromiseOrValue<string>,
+      index: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     tokenURI(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1722,6 +1154,10 @@ export interface GameBaseNFT extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "totalSupply()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transferFrom(
       from: PromiseOrValue<string>,
@@ -1735,36 +1171,6 @@ export interface GameBaseNFT extends BaseContract {
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    transferOwnership(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "transferOwnership(address)"(
-      newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    userExpires(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "userExpires(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    userOf(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "userOf(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
 }
