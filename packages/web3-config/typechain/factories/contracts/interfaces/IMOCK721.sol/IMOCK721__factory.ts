@@ -7,38 +7,18 @@ import type { Provider } from "@ethersproject/providers";
 import type {
   IMOCK721,
   IMOCK721Interface,
-} from "../../../contracts/interfaces/IMOCK721";
+} from "../../../../contracts/interfaces/IMOCK721.sol/IMOCK721";
 
 const _abi = [
   {
-    inputs: [],
-    name: "_startTokenId",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "pure",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "mint",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [
       {
-        internalType: "string",
-        name: "_baseURI",
-        type: "string",
+        internalType: "address",
+        name: "to",
+        type: "address",
       },
     ],
-    name: "setBaseURI",
+    name: "safeMint",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

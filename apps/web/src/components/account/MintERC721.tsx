@@ -9,6 +9,8 @@ import { write } from "fs";
 const MintEquipment = () => {
     const selectedToken = useTokenStore((s: any) => s.selectedToken);
     const MOCK721Address = useAddress(MockERC721__factory) as string;
+    console.log(selectedToken);
+    console.log(MOCK721Address);
 
     const { write: mintEquipment, isLoading } = useContractWrite(
         AccountERC6551__factory,
@@ -35,15 +37,18 @@ const MintEquipment = () => {
     const handleMint = async () => {
         const data = IMOCK721__factory.createInterface().encodeFunctionData(
             "mint",
-            [selectedToken, 1]
         )
-        mintEquipment({
-            args: [MOCK721Address, BigInt(0), data],
-            overrides: {
-                gasLimit: 1000000,
-            }
-        });
-
+        try {
+            mintEquipment({
+                args: [MOCK721Address, BigInt(0), data],
+                overrides: {
+                    gasLimit: 1000000,
+                }
+            });
+        } catch (e) {
+            console.error(e);
+            notify('Failed Minting', 'error');
+        }
     }
 
     return (

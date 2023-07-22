@@ -1,16 +1,10 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
 
 interface IMOCK721 {
-    function mint(address to, uint256 tokenId) external;
+    function mint() external;
 
-    function burn(address from, uint256 tokenId) external;
+    function setBaseURI(string memory _baseURI) external;
 
-    function transfer(
-        address from,
-        address to,
-        uint256 tokenId
-    ) external returns (bool);
-
-    function balanceOf(address account) external view returns (uint256);
+    function _startTokenId() external pure returns (uint256);
 }
