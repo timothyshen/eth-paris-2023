@@ -3,10 +3,13 @@ import { useTokenStore } from '../../hook/useTokenStore';
 import { MockERC20__factory } from 'web3-config';
 import { useAddress } from 'wagmi-lfg';
 import { providers } from 'ethers';
+import TransferERC721 from './TransferERC721';
+import TransferERC20 from './TransferERC20';
 
 interface TokenBalance {
     balance: string;
     name: string;
+    symbol: string;
     tokenAddress: string;
 }
 
@@ -18,10 +21,9 @@ const OwnedTokens = () => {
 
     const fetchToken = async () => {
         const token = MockERC20__factory.connect(MOCK20Address, providersEth);
-        const name = await token.name();
         const balance = await token.balanceOf(selectedToken);
 
-        setTokenBalance({ balance: balance.toString(), name: name, tokenAddress: MOCK20Address });
+        setTokenBalance({ balance: balance.toString(), name: "Mock20Token", symbol: "T20", tokenAddress: MOCK20Address });
     }
 
     useEffect(() => {
@@ -29,11 +31,29 @@ const OwnedTokens = () => {
     }, []);
 
     return (
-        <div>
-            <p>Owned Token</p>
-            <p>{tokenBalance.name}</p>
-            <p>Token Balance: {tokenBalance.balance}</p>
+        <div className="flex items-center justify-center bg-white rounded-lg border border-black p-3 m-3">
+            <div className="flex items-start justify-between w-full">
+                <div>
+                    <div className="flex items-center justify-between">
+                        <div className="flex">
+                            <div className="pr-2 text-black text-sm font-semibold">{tokenBalance.name}</div>
+                            <div className="text-stone-500 text-xs font-semibold">{tokenBalance.symbol}</div>
+                        </div>
+                        <div className="">Token Balance: {tokenBalance.balance}</div>
+                    </div>
+                    <div className="border border-black w-full"></div>
+                    <div className="text-black text-xs font-normal">
+                        Id lectus donec cursus vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id lectus donec cursus vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id lectus donec cursus vulputate.
+                        Id lectus donec cursus vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id lectus donec cursus vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id lectus donec cursus vulputate.
+                    </div>
+                </div>
+                <div className="flex flex-col ml-7 my-5 items-center justify-center">
+                    <TransferERC721 />
+                    <TransferERC20 />
+                </div>
+            </div>
         </div>
+
     );
 }
 

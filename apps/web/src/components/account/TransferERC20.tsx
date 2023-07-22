@@ -6,8 +6,9 @@ import { notify } from 'reapop';
 import { useTokenStore } from "../../hook/useTokenStore";
 
 
-const transferERC20 = (transferTo: string) => {
+const TransferERC20 = () => {
 
+    const { address } = useAccount();
     const selectedToken = useTokenStore((s: any) => s.selectedToken);
     const MOCK20Addr = useAddress(MockERC20__factory) as string;
 
@@ -35,7 +36,7 @@ const transferERC20 = (transferTo: string) => {
     const handleMint = async () => {
         const data = IMOCK20__factory.createInterface().encodeFunctionData(
             "transfer",
-            [transferTo, ethers.utils.parseEther('1')]
+            [address, ethers.utils.parseEther('1')]
         )
         try {
             mintEquipment({
@@ -53,14 +54,14 @@ const transferERC20 = (transferTo: string) => {
         <div className="grid-col-spa">
 
             <button
-                className={`px-4 py-2 text-white rounded-md transition-colors duration-300 ${isLoading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}`}
+                className={`text-xs p-1 m-1 text-white rounded-md transition-colors duration-300 ${isLoading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}`}
                 onClick={() => { handleMint() }}
                 disabled={isLoading}
             >
-                {isLoading ? 'Minting...' : 'Mint Equipment'}
+                {isLoading ? 'Transfer...' : 'Transfer Token'}
             </button>
         </div>
     );
 }
 
-export default transferERC20;
+export default TransferERC20;

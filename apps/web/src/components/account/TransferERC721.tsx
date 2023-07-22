@@ -50,13 +50,13 @@ const TransferERC721 = () => {
         }
     }
     return (
-        <div className="grid-col-spa">
+        <div className="w-full">
             <button
-                className={`px-4 py-2 text-white rounded-md transition-colors duration-300 ${isLoading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}`}
+                className={`text-xs p-1 m-1 text-white rounded-md transition-colors duration-300 ${isLoading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}`}
                 onClick={() => { handleMint() }}
                 disabled={isLoading}
             >
-                {isLoading ? 'Minting...' : 'Mint Equipment'}
+                {isLoading ? 'Transfer...' : 'Transfer Equipment'}
             </button>
         </div>
     );
