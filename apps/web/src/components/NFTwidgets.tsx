@@ -3,6 +3,7 @@ import { useNFTsOwnedQuery } from '../hook/useNFTsOwnedQuery';
 import RentCharacter from './RentCharacter';
 import { GameBaseNFT__factory } from 'web3-config';
 import { useContractRead } from 'wagmi-lfg';
+import WalletAddress from './WalletAddress';
 
 const NFTwidgets = ({ address }: { address: string }) => {
     const [nftAddresses, setNftAddresses] = React.useState<{ [tokenId: string]: string }>({});
@@ -10,13 +11,12 @@ const NFTwidgets = ({ address }: { address: string }) => {
     const nftData = data?.ownedNfts;
 
 
-    const { data: characterData } = useContractRead(
-        GameBaseNFT__factory,
-        'showTBA',
-        {
-            args: [0],
-        }
-    );
+
+    const transformTokenIds = (tokenIds: number) => {
+        return BigInt(tokenIds).toString()
+    }
+
+
 
 
 
@@ -28,19 +28,19 @@ const NFTwidgets = ({ address }: { address: string }) => {
                     <p className="text-gray-600 mb-4">{item.description}</p>
                     <img
                         src={item.media[0]?.raw} // Assuming the media array has at least one item
-                        alt={`Token ${index}`}
+                        alt={`Token ${transformTokenIds(item.id.tokenId)}`}
                         className="w-full h-48 object-cover mb-4 rounded"
                     />
                     <div className="flex justify-between items-center">
                         <span className="text-gray-600">
                             Token ID:{' '}
                             <span className="truncate" title={item.id.tokenId}>
-                                {item.id.tokenId.slice(0, 8)}...
+                                { }...
                             </span>
                         </span>
                         <span className="text-green-600">Balance: {item.balance}</span>
                     </div>
-                    <p>account Address: {}</p>
+                    <WalletAddress tokenID={item.id.tokenId} />
                     {item.error && <p className="text-red-600 mt-2">Error: {item.error}</p>}
                     <div>
                         <RentCharacter characterData={item} />

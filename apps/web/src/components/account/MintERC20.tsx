@@ -1,68 +1,61 @@
 import React, { useState } from "react";
-import { ethers } from "ethers";
+import { useAddress, useContractWrite } from "wagmi-lfg";
+import { IERC721__factory, MockERC721__factory } from "web3-config";
 import { notify } from "reapop";
-import { useAccount } from "wagmi";
-import { useContractWrite } from 'wagmi-lfg';
-import { MockERC20__factory } from "web3-config";
+import useTokenStore from "../hook/useTokenStore";
+import { write } from "fs";
 
-const MintERC20 = ({ user }) => {
-    const [nftData, setNftData] = useState([]);
-    const user = useAccount();
-    const { write: mintCharacter, isLoading } = useContractWrite(
-        MockERC20__factory,
+
+const MintEquipment = () => {
+    const selectedToken = useTokenStore((s) => s.selectedToken);
+
+    const MOCK721Address = useAddress(MockERC721__factory) as string;
+
+    const { write: mintEquipment, isLoading } = useContractWrite(
+        MockERC721__factory,
         "mint",
         {
             reckless: true,
-        },
-
-    );
-
-    const handleMint = async (user: string) => {
-        try {
-            await mintCharacter({
-                args: [user, ethers.utils.parseEther('100')],
-            });
-            notify({
-                title: 'Minted',
-                message: 'Minted successfully',
-                status: 'success',
-                dismissible: true,
-                dismissAfter: 5000,
-            });
-        } catch (error) {
-            console.error('Error while minting:', error);
-            if (error.message.includes('insufficient funds')) {
+            address: selectedToken?.accountAddress,
+            onSuccess: () => {
                 notify({
-                    title: 'Error',
-                    message: 'Insufficient funds to complete the transaction.',
-                    status: 'error',
+                    title: 'Minted',
+                    message: 'Minted successfully',
+                    status: 'success',
                     dismissible: true,
                     dismissAfter: 5000,
                 });
-            } else {
-                notify({
-                    title: 'Error',
-                    message: `Error while minting: ${error.message}`,
-                    status: 'error',
-                    dismissible: true,
-                    dismissAfter: 5000,
-                });
+            },
+            onError: (e) => {
+                console.error(e);
+                notify('Failed Minting', 'error');
             }
         }
-    };
+    );
+
+    const handleMint = async () => {
+        const data = IERC721__factory.createInterface().encodeFunctionData(
+            "mint",
+            [selectedToken?.accountAddress, 1]
+        )
+        mintEquipment({
+            args: [MOCK721Address, BigInt(0), data],
+        });
+
+    }
 
     return (
         <div className="grid-col-spa">
-            <p>Mint Character to start</p>
+
             <button
                 className={`px-4 py-2 text-white rounded-md transition-colors duration-300 ${isLoading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}`}
-                onClick={handleMint(user)}
+                onClick={() => { handleMint() }}
                 disabled={isLoading}
             >
-                {isLoading ? 'Minting...' : 'Mint'}
+                {isLoading ? 'Minting...' : 'Mint Token'}
             </button>
         </div>
     );
 }
 
-export default MintERC20;
+export default MintEquipment;

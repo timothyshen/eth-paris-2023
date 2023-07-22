@@ -9,13 +9,6 @@ const MintCharacterView = () => {
     const address = useAddress(GameBaseNFT__factory);
     // const { data, loading, error } = useQuery(TokensQuery, variables, { cache: false });
 
-    const { data: characterData } = useContractRead(
-        GameBaseNFT__factory,
-        "showTBA",
-        {
-            args: [0],
-        }
-    );
 
 
 
@@ -31,9 +24,7 @@ const MintCharacterView = () => {
                 <div className="col-span-3 text-center">
                     <MintCharacter />
                 </div>
-                <div className="col-span-3 text-center">
-                    <p>Character Name: {characterData}</p>
-                </div>
+
             </div>
         </div>
     );

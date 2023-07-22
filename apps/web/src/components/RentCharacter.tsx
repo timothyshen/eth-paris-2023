@@ -1,24 +1,32 @@
 import { useState } from "react";
 import { useContractWrite } from "wagmi-lfg";
 import { GameBaseNFT__factory } from "web3-config";
+import { ethers } from "ethers";
 
 const RentCharacter = ({ characterData }) => {
-    const [expires, setExpires] = useState('');
+    const [expires, setExpires] = useState(0);
     const [user, setUser] = useState('');
+
+
 
     const { write: rentCharacter, isLoading } = useContractWrite(
         GameBaseNFT__factory,
         "setUser",
+        {
+            reckless: true,
+        }
     );
 
-    const handleRent = async () => {
-        const tokenId = characterData.id.tokenId;
-        const bigNumTokenId = BigInt(tokenId);
-        const bigNumExpires = BigInt(expires);
+    const handleRent = () => {
+        const bigIntValue = BigInt(parseInt(characterData.id.tokenId, 16));
         try {
-            await rentCharacter({
-                args: [bigNumTokenId, user, bigNumExpires]
+            rentCharacter({
+                args: [bigIntValue, "0x735f2B735c7226f8F1fB5A1443FaA6Fe6D557402", expires],
+                overrides: {
+                    gasLimit: 1000000,
+                }
             });
+            console.log("rented character");
         } catch (e) {
             console.log(e);
         }
@@ -28,10 +36,11 @@ const RentCharacter = ({ characterData }) => {
         <div>
             <input
                 className="border-2 border-gray-500"
-                type="number"
+                type="Date"
                 placeholder="Enter number of days"
                 value={expires}
-                onChange={(e) => setExpires(e.target.value)}
+                onChange={(e) => setExpires(
+                    e.target.valueAsNumber)}
             />
             <input
                 className="border-2 border-gray-500"
