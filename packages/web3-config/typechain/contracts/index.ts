@@ -3,7 +3,6 @@
 /* eslint-disable */
 import type * as erc4907 from "./ERC4907";
 export type { erc4907 };
-import type * as erc6551 from "./ERC6551";
-export type { erc6551 };
-import type * as mock from "./mock";
-export type { mock };
+export type { MockERC1155 } from "./MockERC1155";
+export type { MockERC20 } from "./MockERC20";
+export type { MockERC721 } from "./MockERC721";

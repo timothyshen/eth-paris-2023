@@ -2,5 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export * as erc4907 from "./ERC4907";
-export * as erc6551 from "./ERC6551";
-export * as mock from "./mock";
+export { MockERC1155__factory } from "./MockERC1155__factory";
+export { MockERC20__factory } from "./MockERC20__factory";
+export { MockERC721__factory } from "./MockERC721__factory";

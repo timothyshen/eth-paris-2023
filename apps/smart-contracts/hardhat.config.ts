@@ -1,5 +1,5 @@
 import '@nomiclabs/hardhat-ethers';
-// import 'hardhat-deploy-ethers';
+import 'hardhat-deploy-ethers';
 import 'hardhat-deploy';
 import '@nomiclabs/hardhat-etherscan';
 import '@nomiclabs/hardhat-waffle';
@@ -27,40 +27,14 @@ const ALCHEMY_KEY = process.env.ALCHEMY_KEY;
 
 const config: HardhatUserConfig = {
   solidity: '0.8.18',
-  defaultNetwork: 'hardhat',
 
   networks: {
-    hardhat: {
-      chainId: 1337,
-      mining: {
-        auto: true,
-        interval: 5000,
-      },
+    goerli: {
+      chainId: 5,
+      url: `https://eth-goerli.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+      accounts: [`${PRIVATE_KEY}`],
+      deploy: ['deploy/testnet/goerli'],
     },
-    // mainnet: {
-    //   chainId: 1,
-    //   url: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-    //   accounts: [`${PRIVATE_KEY}`],
-    //   deploy: ['deploy/mainnet/ethereum'],
-    // },
-    // optimism: {
-    //   chainId: 10,
-    //   url: `https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-    //   accounts: [`${PRIVATE_KEY}`],
-    //   deploy: ['deploy/mainnet/optimism'],
-    // },
-    // goerli: {
-    //   chainId: 5,
-    //   url: `https://eth-goerli.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-    //   accounts: [`${PRIVATE_KEY}`],
-    //   // deploy: ['deploy/testnet/goerli'],
-    // },
-    // optimismGoerli: {
-    //   chainId: 420,
-    //   url: `https://opt-goerli.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-    //   accounts: [`${PRIVATE_KEY}`],
-    //   deploy: ['deploy/testnet/optimismGoerli'],
-    // },
   },
   namedAccounts: {
     deployer: {

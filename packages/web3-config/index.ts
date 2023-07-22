@@ -1,10 +1,14 @@
-import counterDeploymentGoerli from './deployments/goerli/Counter.json';
+import gameBaseDeploymentGoerli from './deployments/goerli/GameBaseNFT.json';
+import mock20DeploymentGoerli from './deployments/goerli/MockERC20.json';
+import mock721DeploymentGoerli from './deployments/goerli/MockERC721.json';
 export * from './typechain';
 import * as _typechain from './typechain';
 import { localhost, goerli } from 'wagmi/chains';
 
 export const contracts = {
-  Counter: _typechain.Counter__factory.name,
+  MockERC20: _typechain.MockERC20__factory.name,
+  MockERC721: _typechain.MockERC721__factory.name,
+  GameBaseNFT: _typechain.GameBaseNFT__factory.name,
 };
 
 export type AvailableContractNames = keyof typeof contracts;
@@ -27,9 +31,12 @@ export const addresses: Record<number, AddressRecord> = {
   //   [contracts.Counter]: '0x000',
   // },
   [goerli.id]: {
-    [contracts.Counter]: counterDeploymentGoerli.address,
+    [contracts.MockERC20]: mock20DeploymentGoerli.address,
+    [contracts.MockERC721]: mock721DeploymentGoerli.address,
+    [contracts.GameBaseNFT]: gameBaseDeploymentGoerli.address,
   },
 };
+console.log('addresses', addresses);
 
 export const getAddress = (
   contract: AvailableContractNames,

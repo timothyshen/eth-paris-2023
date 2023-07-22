@@ -1,18 +1,11 @@
-import Counter from '../components/Counter';
-import { useContractRead } from 'wagmi-lfg';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-
+import MintCharacterView from '../components/MintCharacterView';
 import 'web3-config';
 const Page = () => {
 
   return (
-    <div style={{ display: 'grid', gap: 20 }}>
-      <div>
-        <ConnectButton />
-      </div>
-      <Counter />
-      <Counter />
-      <Counter />
+    <div>
+      
+      <MintCharacterView />
     </div>
   );
 };
