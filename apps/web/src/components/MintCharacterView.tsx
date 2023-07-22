@@ -7,9 +7,7 @@ import { TokensQuery } from "../query";
 
 const MintCharacterView = () => {
     const address = useAddress(GameBaseNFT__factory);
-    const { data, loading, error } = useQuery(TokensQuery, variables, { cache: false });
-
-    console.log(address);
+    // const { data, loading, error } = useQuery(TokensQuery, variables, { cache: false });
 
     const { data: characterData } = useContractRead(
         GameBaseNFT__factory,

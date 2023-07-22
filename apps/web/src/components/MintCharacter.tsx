@@ -1,9 +1,15 @@
+import React, { useState } from "react";
 import { ethers } from "ethers";
 import { notify } from "reapop";
+import { useAccount } from "wagmi";
 import { useContractWrite } from 'wagmi-lfg';
 import { GameBaseNFT__factory } from "web3-config";
+import { useNFTsOwnedQuery } from "../hook/useNFTsOwnedQuery";
+import NFTwidgets from "./NFTwidgets";
 
 const MintCharacter = () => {
+    const [nftData, setNftData] = useState([]);
+    const user = useAccount();
     const { write: mintCharacter, isLoading } = useContractWrite(
         GameBaseNFT__factory,
         "mint",
@@ -59,6 +65,7 @@ const MintCharacter = () => {
             >
                 {isLoading ? 'Minting...' : 'Mint'}
             </button>
+            <NFTwidgets address={user.address} />
         </div>
     );
 }
