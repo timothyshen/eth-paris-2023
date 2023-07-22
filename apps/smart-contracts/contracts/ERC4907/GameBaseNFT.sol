@@ -48,7 +48,7 @@ contract GameBaseNFT is Ownable, ERC721, IERC4906, IERC4907 {
     constructor(
         address _ERC6551Registry,
         address _ERC6551AccountImplementation
-    ) ERC721('The Managers', 'MAN') {
+    ) ERC721('Rent4907', 'R4907') {
         ERC6551Registry = IERC6551Registry(_ERC6551Registry);
         ERC6551AccountImplementation = _ERC6551AccountImplementation;
     }
