@@ -4,7 +4,7 @@ import mock721DeploymentGoerli from './deployments/goerli/MockERC721.json';
 import Account6551DeploymentGoerli from './deployments/goerli/AccountERC6551.json';
 export * from './typechain';
 import * as _typechain from './typechain';
-import { localhost, goerli } from 'wagmi/chains';
+import { localhost, goerli, gnosisChiado } from 'wagmi/chains';
 
 export const contracts = {
   MockERC20: _typechain.MockERC20__factory.name,
@@ -33,6 +33,12 @@ export const addresses: Record<number, AddressRecord> = {
   //   [contracts.Counter]: '0x000',
   // },
   [goerli.id]: {
+    [contracts.MockERC20]: mock20DeploymentGoerli.address,
+    [contracts.MockERC721]: mock721DeploymentGoerli.address,
+    [contracts.GameBaseNFT]: gameBaseDeploymentGoerli.address,
+    [contracts.AccountERC6551]: Account6551DeploymentGoerli.address,
+  },
+  [gnosisChiado.id]: {
     [contracts.MockERC20]: mock20DeploymentGoerli.address,
     [contracts.MockERC721]: mock721DeploymentGoerli.address,
     [contracts.GameBaseNFT]: gameBaseDeploymentGoerli.address,
