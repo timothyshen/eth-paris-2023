@@ -1,31 +1,40 @@
-# Web3 fullstack starter
+# Pixel Rental
 
-My ideal monorepo setup for working with fullstack web3 development. Can be used for quick prototyping or built on top on for production ready projects.
+Credit to @jonathangus for creating the template
 
-### Core packages
-- `ethers`
-- `wagmi`
-- `hardhat`
-- `next.js`
-- `typechain`
+## What are we doing here?
+This is a project using ERC4907(rentable NFT) + ERC6551(TBA)to create a rentable NFT wallet account for GameFi(mainly), but other projects in the space can utilize this idea to help break the barrier in mass adoption.
 
-### Features?
-- built on top of wagmi (❤️) with recognisable api
-- write and read hooks are typesafe
-- sync deployments to frontend so you dont manually have to update addresses
-- no theming or css 
+### Currently, we see through a few issues
+- Many people claim to be "learners", but they just learn instead of doing practical actions.
+  Why? Rug pull, high cost of entrance, token fluctuation, and many more stops many people make the first step.
+- Compare with the traditional game industry. We lack the ability to rent an account. Account renting is a huge thing.
+  Why? Assets are fundamentally bundled with the account due to the key pair account system. We can't rent out one and only Private Key to others.
+- Lack of users and actual down-to-ground utility.
+  Why? Working in this space is fascinating for sure, but there are many technical barriers for normal users to understand. Yes, ZK!
 
+### So what do we purpose here?
+A rentable account serves objective renting and subjective renting.
+A stand-alone solution combines the utility of both NFT and wallet.
 
-### Apps and Packages
-- `web`: another [Next.js](https://nextjs.org) app
-- `smart-contracts`: smart contracts with hardhat
-- `web3-config`: deployments, generated types from contract and common web3 config
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+The rentable NFT wallet can be seen as two parts
+- NFT
+- Wallet
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+We elaborate on adding a module to the NFT to make it rentable(adding the ERC4907 interface)
+The wallet helps to isolate the assets and transactions, as all related assets and transactions are bundled with an NFT wallet instead of an NFT holder wallet account. This means transferring the NFT will also transfer the ownership of the wallet. 
 
+## Technology
+```
+|-\apps
+|------\smart-contracts # smart contract folder
+|------\web # website frontend
+|-\packages # shared config + packages
+|------\lint # eslint config folder
+|------\tsconfig # typescript config folder
+|------\wagmi-lfg # wagmi wrap up folder
+|------\web3-config # contract related folder
+```
 ### Utilities
 
 This turborepo has some additional tools already setup for you:
