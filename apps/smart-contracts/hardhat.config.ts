@@ -26,6 +26,7 @@ task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const ALCHEMY_KEY = process.env.ALCHEMY_KEY;
+const INFRA_KEY = process.env.INFRA_KEY;
 
 const config: HardhatUserConfig = {
   solidity: '0.8.18',
@@ -64,7 +65,7 @@ const config: HardhatUserConfig = {
       deploy: ['deploy/testnet/goerli'],
     },
     linea: {
-      url: `https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY`,
+      url: `https://linea-goerli.infura.io/v3/${INFRA_KEY}`,
       accounts: [`${PRIVATE_KEY}`],
       chainId: 59140,
       deploy: ['deploy/testnet/goerli'],

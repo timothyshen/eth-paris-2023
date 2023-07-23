@@ -33,6 +33,7 @@ const Linea: Chain = {
     symbol: 'ETH',
     decimals: 18,
   },
+  testnet: true,
 }
 
 
