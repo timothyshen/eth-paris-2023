@@ -7,7 +7,7 @@ const MintCharacterView = () => {
     const address = useAddress(GameBaseNFT__factory);
 
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center">
             <div className="grid grid-cols-3 gap-4">
                 <p className="col-span-3 text-center">
                     Welcome to Hero Quest!

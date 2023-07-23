@@ -24,15 +24,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <NotificationsProvider>
         <Web3Provider>
-          <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6">
-            <div className="flex items-center flex-shrink-0 text-white mr-6">
+          <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6 mb-20">
+            <div className="flex items-center text-white mr-6">
               <NextLink href="/">
                 <p className="font-semibold text-xl tracking-tight">Home</p>
               </NextLink>
             </div>
             <ConnectButton />
           </nav>
-          <div>
+          <div className='mt-10'>
             <Component {...pageProps} />
           </div>
           <NotificationHandler />

@@ -18,21 +18,21 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { config } from '../config/config';
 
-const Linea: Chain = {
-  id: 59140,
-  name: 'Linea Testnet',
-  network: 'linea',
-  rpcUrls: {
-    default: 'https://rpc.linea.build',
-  },
-  explorerURL: 'https://explorer.goerli.linea.build',
-  explorerName: 'Linea Explorer',
-  nativeCurrency: {
-    name: 'ETH',
-    symbol: 'ETH',
-    decimals: 18,
-  },
-}
+// const Linea: Chain = {
+//   id: 59140,
+//   name: 'Linea Testnet',
+//   network: 'linea',
+//   rpcUrls: {
+//     default: 'https://rpc.linea.build',
+//   },
+//   explorerURL: 'https://explorer.goerli.linea.build',
+//   explorerName: 'Linea Explorer',
+//   nativeCurrency: {
+//     name: 'ETH',
+//     symbol: 'ETH',
+//     decimals: 18,
+//   },
+// }
 
 
 const chains = [

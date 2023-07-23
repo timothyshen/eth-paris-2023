@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTokenStore } from '../../hook/useTokenStore';
 import { MockERC20__factory } from 'web3-config';
 import { useAddress } from 'wagmi-lfg';
-import { providers } from 'ethers';
+import { ethers, providers } from 'ethers';
 import TransferERC721 from './TransferERC721';
 import TransferERC20 from './TransferERC20';
 
@@ -22,6 +22,7 @@ const OwnedTokens = () => {
     });
     const selectedToken = useTokenStore((s: any) => s.selectedToken);
     const MOCK20Address = useAddress(MockERC20__factory) as string;
+    console.log("MOCK20Address", MOCK20Address);
     let providersEth: any;
     if (typeof window !== 'undefined') {
         providersEth = new providers.Web3Provider(window?.ethereum);
@@ -29,8 +30,8 @@ const OwnedTokens = () => {
     const fetchToken = async () => {
         const token = MockERC20__factory.connect(MOCK20Address, providersEth);
         const balance = await token.balanceOf(selectedToken);
-
-        setTokenBalance({ balance: balance.toString(), name: "Mock20Token", symbol: "T20", tokenAddress: MOCK20Address });
+        const convertBalanceToNumb = ethers.utils.formatEther(balance);
+        setTokenBalance({ balance: convertBalanceToNumb, name: "Mock20Token", symbol: "T20", tokenAddress: MOCK20Address });
     }
 
     useEffect(() => {
