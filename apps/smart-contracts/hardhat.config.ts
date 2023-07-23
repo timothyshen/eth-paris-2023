@@ -46,19 +46,23 @@ const config: HardhatUserConfig = {
       url: 'https://rpc.chiadochain.net',
       gasPrice: 1000000000,
       accounts: [`${PRIVATE_KEY}`],
+      chainId: 10200,
     },
     zkEVM: {
       url: `https://rpc.public.zkevm-test.net`,
       accounts: [`${PRIVATE_KEY}`],
+      chainId: 1442,
     },
     zkSyncTestnet: {
       url: 'https://testnet.era.zksync.dev',
       ethNetwork: 'goerli', // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
       zksync: true,
+      chainId: 280,
     },
     linea: {
       url: `https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY`,
       accounts: [`${PRIVATE_KEY}`],
+      chainId: 59140,
     },
   },
   zksolc: {
