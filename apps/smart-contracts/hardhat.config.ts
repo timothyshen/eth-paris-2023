@@ -6,6 +6,8 @@ import '@nomiclabs/hardhat-waffle';
 import '@typechain/hardhat';
 import 'hardhat-gas-reporter';
 import 'hardhat-abi-exporter';
+import '@matterlabs/hardhat-zksync-deploy';
+import '@matterlabs/hardhat-zksync-solc';
 
 import * as dotenv from 'dotenv';
 import { HardhatUserConfig, task } from 'hardhat/config';
@@ -27,7 +29,7 @@ const ALCHEMY_KEY = process.env.ALCHEMY_KEY;
 
 const config: HardhatUserConfig = {
   solidity: '0.8.18',
-
+  defaultNetwork: 'zkSyncTestnet',
   networks: {
     goerli: {
       chainId: 5,
@@ -35,6 +37,33 @@ const config: HardhatUserConfig = {
       accounts: [`${PRIVATE_KEY}`],
       deploy: ['deploy/testnet/goerli'],
     },
+    alfajores: {
+      url: 'https://alfajores-forno.celo-testnet.org',
+      accounts: [`${PRIVATE_KEY}`],
+      chainId: 44787,
+    },
+    chiado: {
+      url: 'https://rpc.chiadochain.net',
+      gasPrice: 1000000000,
+      accounts: [`${PRIVATE_KEY}`],
+    },
+    zkEVM: {
+      url: `https://rpc.public.zkevm-test.net`,
+      accounts: [`${PRIVATE_KEY}`],
+    },
+    zkSyncTestnet: {
+      url: 'https://testnet.era.zksync.dev',
+      ethNetwork: 'goerli', // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
+      zksync: true,
+    },
+    linea: {
+      url: `https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY`,
+      accounts: [`${PRIVATE_KEY}`],
+    },
+  },
+  zksolc: {
+    version: 'latest',
+    settings: {},
   },
   namedAccounts: {
     deployer: {
