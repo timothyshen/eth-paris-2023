@@ -4,7 +4,7 @@
 export * as account from "./Account";
 export * as erc4907 from "./ERC4907";
 export * as erc6551 from "./ERC6551";
-export * as mockErc721Sol from "./MockERC721.sol";
 export * as interfaces from "./interfaces";
 export { MockERC1155__factory } from "./MockERC1155__factory";
 export { MockERC20__factory } from "./MockERC20__factory";
+export { MockERC721__factory } from "./MockERC721__factory";

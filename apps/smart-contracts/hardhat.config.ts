@@ -29,7 +29,7 @@ const ALCHEMY_KEY = process.env.ALCHEMY_KEY;
 
 const config: HardhatUserConfig = {
   solidity: '0.8.18',
-  defaultNetwork: 'zkSyncTestnet',
+  // defaultNetwork: 'zkSyncTestnet',
   networks: {
     goerli: {
       chainId: 5,
@@ -41,28 +41,33 @@ const config: HardhatUserConfig = {
       url: 'https://alfajores-forno.celo-testnet.org',
       accounts: [`${PRIVATE_KEY}`],
       chainId: 44787,
+      deploy: ['deploy/testnet/goerli'],
     },
     chiado: {
       url: 'https://rpc.chiadochain.net',
       gasPrice: 1000000000,
       accounts: [`${PRIVATE_KEY}`],
       chainId: 10200,
+      deploy: ['deploy/testnet/goerli'],
     },
     zkEVM: {
       url: `https://rpc.public.zkevm-test.net`,
       accounts: [`${PRIVATE_KEY}`],
       chainId: 1442,
+      deploy: ['deploy/testnet/goerli'],
     },
     zkSyncTestnet: {
       url: 'https://testnet.era.zksync.dev',
       ethNetwork: 'goerli', // or a Goerli RPC endpoint from Infura/Alchemy/Chainstack etc.
-      zksync: true,
+      zksync: false,
       chainId: 280,
+      deploy: ['deploy/testnet/goerli'],
     },
     linea: {
       url: `https://linea-goerli.infura.io/v3/YOUR-INFURA-API-KEY`,
       accounts: [`${PRIVATE_KEY}`],
       chainId: 59140,
+      deploy: ['deploy/testnet/goerli'],
     },
   },
   zksolc: {

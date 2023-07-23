@@ -11,6 +11,7 @@ import {
   gnosisChiado,
   celo,
   zkSyncTestnet,
+  polygonMumbai,
 
 } from "wagmi/chains";
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
@@ -40,6 +41,7 @@ const chains = [
   gnosisChiado,
   celo,
   zkSyncTestnet,
+  polygonMumbai,
 ]
 
 const { provider } = configureChains(config.defaultChains, [

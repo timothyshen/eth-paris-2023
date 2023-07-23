@@ -11,7 +11,7 @@ export const useNFTsMetaData = (tokenId: number) => {
     ['tokenId', tokenId],
     async () => {
       const { data } = await axios.get(
-        `https://eth-goerli.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}/getNFTMetadata?contractAddress=${gamebaseContractAddress}&tokenId=${tokenId}&pageSize=100`
+        `https://polygonzkevm-testnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}/getNFTMetadata?contractAddress=${gamebaseContractAddress}&tokenId=${tokenId}&pageSize=100`
       );
       const gamebaseNFTs = data.ownedNfts.filter(
         (nft: any) => nft.contract.address === gamebaseContractAddress

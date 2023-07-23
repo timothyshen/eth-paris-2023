@@ -11,13 +11,13 @@ export const useNFTsOwnedQuery = (address?: string, type?: string) => {
     ['address', address],
     async () => {
       const { data } = await axios.get(
-        `https://eth-goerli.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}/getNFTs?owner=${address}&withMetadata=true&pageSize=100`
+        `https://polygonzkevm-testnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}/getNFTs?owner=${address}&withMetadata=true&pageSize=100`
       );
       if (type === 'gamebase') {
-      const gamebaseNFTs = data.ownedNfts.filter(
-        (nft: any) => nft.contract.address === gamebaseContractAddress
-      );
-      return gamebaseNFTs;
+        const gamebaseNFTs = data.ownedNfts.filter(
+          (nft: any) => nft.contract.address === gamebaseContractAddress
+        );
+        return gamebaseNFTs;
       }
       console.log(data.ownedNfts);
       return data.ownedNfts;
